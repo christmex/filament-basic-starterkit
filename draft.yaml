@@ -1,0 +1,16 @@
+models:
+  SchoolYear:
+    name: string
+    status: boolean
+
+  SchoolTerm:
+    name: string
+    status: boolean
+
+  Student:
+    name: string
+
+  Classroom:
+    name: string
+  
+  
