@@ -95,6 +95,8 @@ class AdminPanelProvider extends PanelProvider
             ->font('Sansation')
             ->sidebarCollapsibleOnDesktop()
             ->spa()
+            ->databaseNotifications()
+            ->sidebarFullyCollapsibleOnDesktop()
             ;
     }
 }

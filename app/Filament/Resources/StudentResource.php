@@ -2,22 +2,27 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\StudentResource\Pages;
-use App\Filament\Resources\StudentResource\RelationManagers;
-use App\Models\Student;
 use Filament\Forms;
-use Filament\Forms\Form;
-use Filament\Resources\Resource;
 use Filament\Tables;
+use App\Models\Student;
+use Filament\Forms\Form;
 use Filament\Tables\Table;
+use Filament\Resources\Resource;
+use App\Filament\Exports\StudentExporter;
+use App\Filament\Imports\StudentImporter;
+use Filament\Tables\Actions\ExportAction;
+use Filament\Tables\Actions\ImportAction;
 use Illuminate\Database\Eloquent\Builder;
+use Filament\Tables\Actions\ExportBulkAction;
+use App\Filament\Resources\StudentResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use App\Filament\Resources\StudentResource\RelationManagers;
 
 class StudentResource extends Resource
 {
     protected static ?string $model = Student::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-s-user-group';
 
     protected static bool $isScopedToTenant = false;
 
@@ -61,6 +66,13 @@ class StudentResource extends Resource
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
                 ]),
+                    ExportBulkAction::make()->exporter(StudentExporter::class)
+            ])
+            ->headerActions([
+                ExportAction::make()
+                    ->exporter(StudentExporter::class),
+                ImportAction::make()
+                    ->importer(StudentImporter::class)
             ]);
     }
 
