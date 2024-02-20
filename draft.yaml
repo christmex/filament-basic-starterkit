@@ -1,16 +1,18 @@
 models:
   SchoolYear:
-    name: string
+    name: string unique
     status: boolean
 
   SchoolTerm:
-    name: string
+    name: string unique
     status: boolean
 
   Student:
     name: string
+    nis: string nullable
+    nisn: string nullable 
 
   Classroom:
-    name: string
+    name: string unique
   
   

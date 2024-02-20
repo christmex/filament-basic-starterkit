@@ -22,6 +22,8 @@ class StudentFactory extends Factory
     {
         return [
             'name' => $this->faker->name(),
+            'nis' => $this->faker->word(),
+            'nisn' => $this->faker->word(),
         ];
     }
 }

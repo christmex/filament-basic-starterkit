@@ -26,7 +26,9 @@ class ClassroomResource extends Resource
         return $form
             ->schema([
                 Forms\Components\TextInput::make('name')
+                    ->unique(ignoreRecord:true)
                     ->required()
+                    ->placeholder('Ex: Matthew 1 | Caleb 1 | Isaac 1')
                     ->maxLength(255),
             ]);
     }

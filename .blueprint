@@ -3,10 +3,10 @@ created:
     - database/factories/SchoolTermFactory.php
     - database/factories/StudentFactory.php
     - database/factories/ClassroomFactory.php
-    - database/migrations/2024_02_19_064820_create_school_years_table.php
-    - database/migrations/2024_02_19_064821_create_school_terms_table.php
-    - database/migrations/2024_02_19_064822_create_students_table.php
-    - database/migrations/2024_02_19_064823_create_classrooms_table.php
+    - database/migrations/2024_02_20_005113_create_school_years_table.php
+    - database/migrations/2024_02_20_005114_create_school_terms_table.php
+    - database/migrations/2024_02_20_005115_create_students_table.php
+    - database/migrations/2024_02_20_005116_create_classrooms_table.php
     - app/Models/SchoolYear.php
     - app/Models/SchoolTerm.php
     - app/Models/Student.php
@@ -14,7 +14,7 @@ created:
 models:
     Team: { name: string, slug: string }
     User: { name: string, email: string, email_verified_at: 'datetime nullable', password: string, remember_token: 'string:100 nullable' }
-    SchoolYear: { name: string, status: boolean }
-    SchoolTerm: { name: string, status: boolean }
-    Student: { name: string }
-    Classroom: { name: string }
+    SchoolYear: { name: 'string unique', status: boolean }
+    SchoolTerm: { name: 'string unique', status: boolean }
+    Student: { name: string, nis: 'string nullable', nisn: 'string nullable' }
+    Classroom: { name: 'string unique' }

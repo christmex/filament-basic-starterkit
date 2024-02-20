@@ -17,6 +17,10 @@ class StudentImporter extends Importer
             ImportColumn::make('name')
                 ->requiredMapping()
                 ->rules(['required', 'max:255']),
+            ImportColumn::make('nis')
+                ->rules(['max:255','unique:students']),
+            ImportColumn::make('nisn')
+                ->rules(['max:255','unique:students']),
         ];
     }
 

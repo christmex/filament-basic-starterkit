@@ -38,6 +38,15 @@ class StudentResource extends Resource
                 Forms\Components\TextInput::make('name')
                     ->required()
                     ->maxLength(255),
+                Forms\Components\TextInput::make('nis')
+                    ->required()
+                    ->unique(ignoreRecord: true)
+                    ->maxLength(255),
+                Forms\Components\TextInput::make('nisn')
+                    ->required()
+                    ->unique(ignoreRecord: true)
+                    ->unique(ignoreRecord:true)
+                    ->maxLength(255),
             ]);
     }
 
@@ -46,6 +55,10 @@ class StudentResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('name')
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('nis')
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('nisn')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
