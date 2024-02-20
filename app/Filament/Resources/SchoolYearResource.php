@@ -29,7 +29,8 @@ class SchoolYearResource extends Resource
                     ->required()
                     ->unique(ignoreRecord:true)
                     ->maxLength(255),
-                Forms\Components\Toggle::make('status')
+                Forms\Components\Hidden::make('status')
+                    ->default(0)
                     ->required(),
             ]);
     }
@@ -40,8 +41,12 @@ class SchoolYearResource extends Resource
             ->columns([
                 Tables\Columns\TextColumn::make('name')
                     ->searchable(),
-                Tables\Columns\IconColumn::make('status')
-                    ->boolean(),
+                Tables\Columns\ToggleColumn::make('status')
+                    ->beforeStateUpdated(function ($record, $state) {
+                        SchoolYear::where('id','!=',$record->id)->update([
+                            'status' => 0
+                        ]);
+                    }),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()

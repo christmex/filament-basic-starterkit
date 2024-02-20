@@ -1,11 +1,11 @@
 models:
   SchoolYear:
     name: string unique
-    status: boolean
+    status: boolean default:false
 
   SchoolTerm:
     name: string unique
-    status: boolean
+    status: boolean default:false
 
   Student:
     name: string
