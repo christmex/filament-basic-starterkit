@@ -79,7 +79,7 @@ class StudentResource extends Resource
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
                 ]),
-                    ExportBulkAction::make()->exporter(StudentExporter::class)
+                ExportBulkAction::make()->exporter(StudentExporter::class)
             ])
             ->headerActions([
                 ExportAction::make()

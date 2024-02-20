@@ -2,16 +2,21 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\ClassroomResource\Pages;
-use App\Filament\Resources\ClassroomResource\RelationManagers;
-use App\Models\Classroom;
 use Filament\Forms;
-use Filament\Forms\Form;
-use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Forms\Form;
+use App\Models\Classroom;
 use Filament\Tables\Table;
+use Filament\Resources\Resource;
+use Filament\Tables\Actions\ExportAction;
+use Filament\Tables\Actions\ImportAction;
 use Illuminate\Database\Eloquent\Builder;
+use App\Filament\Exports\ClassroomExporter;
+use App\Filament\Imports\ClassroomImporter;
+use Filament\Tables\Actions\ExportBulkAction;
+use App\Filament\Resources\ClassroomResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use App\Filament\Resources\ClassroomResource\RelationManagers;
 
 class ClassroomResource extends Resource
 {
@@ -59,6 +64,13 @@ class ClassroomResource extends Resource
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
                 ]),
+                ExportBulkAction::make()->exporter(ClassroomExporter::class)
+            ])
+            ->headerActions([
+                ExportAction::make()
+                    ->exporter(ClassroomExporter::class),
+                ImportAction::make()
+                    ->importer(ClassroomImporter::class)
             ]);
     }
 
